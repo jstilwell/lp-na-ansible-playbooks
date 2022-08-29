@@ -1,0 +1,11 @@
+---
+- hosts: all
+  tasks:    
+    - name: Get sudoers file content
+      become: yes
+      become_method: su
+      command: cat /etc/sudoers
+      register: cmd_var
+ 
+    - name: Print output
+      debug: msg= "{{ cmd_var.stdout }}"
