@@ -1,8 +1,8 @@
 - hosts: all
   tasks:
-    - name: Slurp sudoer file
-      slurp:
-        src: /etc/sudoers
-      register: slurpfile
+    - name: Read sudoer file
+      command: cat sudoers chdir=/etc
+      register: cmd_output
 
-    - debug: msg="{{ slurpfile['content'] | b64decode }}"
+    - name: Print out
+      debug: msg="{{command_output.stdout}}"
