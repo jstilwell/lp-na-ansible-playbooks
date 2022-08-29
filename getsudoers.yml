@@ -3,7 +3,8 @@
   tasks:    
     - name: Get sudoers file content
       become: yes
-      become_method: su
+      become_user: awx
+      become_method: sudo
       command: cat /etc/sudoers
       register: cmd_var
  
