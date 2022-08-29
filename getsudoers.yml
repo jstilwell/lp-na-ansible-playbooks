@@ -5,9 +5,18 @@
       become: yes
       become_user: root
       become_method: sudo
-      command: cat /etc/sudoers
+      shell: | 
+        cat /etc/sudoers
       register: file_content
 
     - name: "Print the file content to a console"
       debug:
         msg: "{{ file_content.stdout }}"
+
+    - name: "Save the file content to a '$resolve_conf' variable"
+      set_fact:
+      resolve_conf: "{{ file_content.stdout }}"
+
+    - name: "Print the '$resolve_conf' variable"
+      debug:
+        msg: "{{ resolve_conf }}"
