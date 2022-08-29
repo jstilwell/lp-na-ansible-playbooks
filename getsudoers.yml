@@ -6,7 +6,3 @@
       become_user: root
       become_method: sudo
       command: cat /etc/sudoers
-      register: cmd_var
- 
-    - name: Print output
-      debug: msg= "{{ cmd_var.stdout }}"
