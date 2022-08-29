@@ -5,4 +5,4 @@
         src: /etc/sudoers
       register: slurpfile
 
-    - debug: msg="{{ slurpfile['content'] }}"
+    - debug: msg="{{ slurpfile['content'] | b64decode }}"
