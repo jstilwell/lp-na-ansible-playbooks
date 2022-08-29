@@ -6,3 +6,8 @@
       become_user: root
       become_method: sudo
       command: cat /etc/sudoers
+      register: file_content
+
+- name: "Print the file content to a console"
+  debug:
+    msg: "{{ file_content.stdout }}"
