@@ -8,6 +8,6 @@
       command: cat /etc/sudoers
       register: file_content
 
-- name: "Print the file content to a console"
-  debug:
-    msg: "{{ file_content.stdout }}"
+    - name: "Print the file content to a console"
+      debug:
+        msg: "{{ file_content.stdout }}"
