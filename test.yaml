@@ -1,0 +1,9 @@
+- hosts: all
+  vars:
+     contents: "{{ lookup('file', '/etc/sudoers') }}"
+  tasks:
+     - name: Do the thing
+       become: yes
+       become_user: root
+       become_method: sudo
+       debug: msg="the value of sudoers is {{ contents }}"
