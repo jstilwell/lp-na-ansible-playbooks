@@ -3,12 +3,11 @@
   tasks:    
     - name: Refresh Sandbox
       become: yes
-      become_user: root
       become_method: sudo
       shell: | 
-        sudo wget -O /home/awx/refresh_sandbox.sh https://raw.githubusercontent.com/jstilwell/lp-na-ansible-playbooks/main/scripts/refresh_sandbox.sh
-        sudo chmod +x /home/awx/refresh_sandbox.sh
-        sudo /home/awx/refresh_sandbox.sh
+        sudo wget -O /home/root/refresh_sandbox.sh https://raw.githubusercontent.com/jstilwell/lp-na-ansible-playbooks/main/scripts/refresh_sandbox.sh
+        sudo chmod +x /home/root/refresh_sandbox.sh
+        sudo /home/root/refresh_sandbox.sh
       register: file_content
 
     - name: "Print the file content to a console"
