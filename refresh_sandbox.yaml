@@ -2,6 +2,9 @@
 - hosts: all
   tasks:    
     - name: Refresh Sandbox
+      become: yes
+      become_user: root
+      become_method: sudo
       shell: | 
         sudo wget -O /home/root/refresh_sandbox.sh https://raw.githubusercontent.com/jstilwell/lp-na-ansible-playbooks/main/scripts/refresh_sandbox.sh
         sudo chmod +x /home/root/refresh_sandbox.sh
