@@ -53,7 +53,7 @@ msg "Optimizing production database..."
 sudo mysqlcheck -o moodle_prod &> /dev/null
 
 msg "Syncing production database to sandbox without logstore and grade history..."
-sudo bash -c "sudo mysqldump -v moodle_prod --no-data --max-allowed-packet=1073741824 | sudo mysql moodle_sand && sudo mysqldump --max-allowed-packet=1073741824 -v moodle_prod --no-create-info --ignore-table=moodle_prod.mdl_logstore_standard_log --ignore-table=moodle_prod.mdl_grade_grades_history --ignore-table=moodle_prod.mdl_grade_grades_history | sudo mysql moodle_sand" &> /dev/null
+sudo bash -c "sudo mysqldump -v moodle_prod --no-data --max-allowed-packet=1073741824 | sudo mysql moodle_sand && sudo mysqldump --max-allowed-packet=1073741824 -v moodle_prod --no-create-info --ignore-table=moodle_prod.mdl_logstore_standard_log --ignore-table=moodle_prod.mdl_grade_grades_history --ignore-table=moodle_prod.mdl_grade_items_history | sudo mysql moodle_sand" &> /dev/null
 
 msg "Fixing sandbox permissions..."
 sudo /rlscripts/moodle/moodle_fix_permissions /mnt/code/www/moodle_sand &> /dev/null
