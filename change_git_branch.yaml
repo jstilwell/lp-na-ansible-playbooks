@@ -1,5 +1,11 @@
 ---
 - hosts: all
+
+  vars_prompt: 
+    - name: "git_password"
+      prompt: "Enter passphrase for /root/.ssh/id_rsa.rlgit"
+      private: yes
+
   tasks:
     - name: Change git branches for LMS code and all plugins on DVM
       become: yes
@@ -8,8 +14,7 @@
       shell: | 
         sudo wget -O /home/awx/change_git_branch.sh https://raw.githubusercontent.com/jstilwell/lp-na-ansible-playbooks/main/scripts/change_git_branch.sh
         sudo chmod +x /home/awx/change_git_branch.sh
-        sudo /home/awx/change_git_branch.sh {{ lms_code_directory }} {{ git_branch }} {{ git_password }}
-      no_log: true
+        sudo /home/awx/change_git_branch.sh {{ lms_code_directory }} {{ git_branch }}
       register: cmd_output
 
     - name: "Print the command output to a console"
