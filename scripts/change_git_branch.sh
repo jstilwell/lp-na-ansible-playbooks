@@ -28,7 +28,7 @@ filename="dirlist.txt"
 
 # Answer propmt for git password one time only.
 sudo eval `ssh-agent -s`
-echo "$gitpass" | sudo ssh-add /root/.ssh/id_rsa.rlgit
+echo "$gitpass" | sudo ssh-add /home/awx/.ssh/id_rsa.rlgit
     
 # Get list of subdirectories with .git folders (external plugins)
 sudo find $codedir -name ".git" -type d > $filename
