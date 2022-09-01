@@ -27,7 +27,6 @@ gitpass=$3
 filename="dirlist.txt"
 
 # Answer propmt for git password one time only.
-sudo eval `ssh-agent -s`
 echo "$gitpass" | sudo ssh-add /home/awx/.ssh/id_rsa.rlgit
     
 # Get list of subdirectories with .git folders (external plugins)
