@@ -27,14 +27,15 @@ gitpass=$3
 filename="dirlist.txt"
 
 # Answer propmt for git password one time only.
-echo "$gitpass" | ssh-add /root/.ssh/id_rsa.rlgit
+sudo eval `ssh-agent -s`
+echo "$gitpass" | sudo ssh-add /root/.ssh/id_rsa.rlgit
     
 # Get list of subdirectories with .git folders (external plugins)
-find $codedir -name ".git" -type d > $filename
+sudo find $codedir -name ".git" -type d > $filename
 
 while read line; do
 # Change directory and move one down. 
 cd $line && cd ..
 # Checkout branch specified by user.
-git fetch origin && git checkout -b $gitbranch origin/$gitbranch
+sudo git fetch origin && git checkout -b $gitbranch origin/$gitbranch
 done < $filename
