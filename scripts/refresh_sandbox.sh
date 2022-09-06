@@ -21,17 +21,8 @@ die() {
 
 # Script logic begin
 
-if [ -d "/mnt/code/www/moodle_sand" ]
-then
-    msg "Purging existing sandbox..."
-    sudo /rlscripts/moodle/moodle_purge -f /mnt/code/www/moodle_sand &> /dev/null
-else
-    msg "Purging existing sandbox..."
-    sudo mkdir /mnt/code/www/moodle_sand
-    sudo /rlscripts/moodle/moodle_purge -f /mnt/code/www/moodle_sand &> /dev/null
-fi
-
-msg "Purging any leftover sandbox directories just in case..."
+msg "Purging existing sandbox..."
+sudo mysqladmin -f drop moodle_sand
 sudo rm -rf /mnt/code/www/moodle_sand &> /dev/null
 sudo rm -rf /mnt/data/moodledata_sand &> /dev/null
 
